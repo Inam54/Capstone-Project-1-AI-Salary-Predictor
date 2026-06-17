@@ -57,8 +57,9 @@ st.divider()
 # Predict
 if st.button("Predict Salary"):
 
-    if not country or not job_role or not ai_specialization or not industry or not education_required:
-        st.error("Please fill in all text fields.")
+    if any(len(x.strip()) < 2 for x in [country, job_role, ai_specialization, industry, education_required]):
+        st.error("All text fields must have at least 2 characters.")
+        st.stop()
 
     else:
         payload = {
