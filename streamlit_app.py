@@ -3,7 +3,7 @@ import os
 import requests
 import streamlit as st
 
-API_URL = "https://your-api.onrender.com"
+API_URL = "capstone-project-1-ai-salary-predictor.onrender.com"
 
 st.set_page_config(page_title="AI Salary Predictor", page_icon="💼")
 
