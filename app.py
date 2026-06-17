@@ -22,7 +22,7 @@ def health():
 @app.post("/predict")
 def predict(data: UserInput):
     if model is None:
-        return HTTPException(
+        raise HTTPException(
             status_code=503,
             detail={"error": "Model not loaded. Ensure model.pkl exists."}
         )
@@ -32,7 +32,7 @@ def predict(data: UserInput):
     try:
         prediction = predict_output(input_df)
     except Exception as e:
-        return HTTPException(
+        raise HTTPException(
             status_code=500,
             detail={"error": f"Prediction error: {str(e)}"}
         )

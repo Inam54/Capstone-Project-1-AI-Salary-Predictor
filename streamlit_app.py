@@ -1,5 +1,9 @@
-import streamlit as st
+import os
+
 import requests
+import streamlit as st
+
+API_URL = os.getenv("API_URL", "http://localhost:8000").rstrip("/")
 
 st.set_page_config(page_title="AI Salary Predictor", page_icon="💼")
 
@@ -84,7 +88,7 @@ if st.button("Predict Salary"):
         }
 
         try:
-            response = requests.post("http://localhost:8000/predict", json=payload)
+            response = requests.post(f"{API_URL}/predict", json=payload, timeout=60)
 
             if response.status_code == 200:
                 data = response.json()
@@ -97,7 +101,11 @@ if st.button("Predict Salary"):
                     st.error(e["msg"])
 
             else:
-                st.error(response.json().get("error", "Something went wrong."))
+                body = response.json()
+                error = body.get("detail") or body.get("error") or "Something went wrong."
+                st.error(error)
 
         except requests.exceptions.ConnectionError:
-            st.error("Could not connect to API. Make sure FastAPI is running on http://localhost:8000")
+            st.error(f"Could not connect to API at {API_URL}. Check that the FastAPI service is running.")
+        except requests.exceptions.Timeout:
+            st.error(f"API request timed out. The service at {API_URL} may be waking up — try again in a moment.")
