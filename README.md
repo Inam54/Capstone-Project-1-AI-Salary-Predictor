@@ -2,17 +2,6 @@
 
 > End-to-end Machine Learning system that predicts AI job salaries based on real-world job and economic features — trained, served via REST API, and deployed to the cloud.
 
----
-
-## 🌐 Live Demo
-
-| Service | URL |
-|---|---|
-| 🔵 FastAPI (Swagger UI) | *(Add your Render API URL here)/docs* |
-| 🟢 Streamlit Frontend | *(Add your Render frontend URL here)* |
-
----
-
 ## 📄 Project Overview
 
 This project demonstrates a **complete production ML workflow**, including:
