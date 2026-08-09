@@ -132,6 +132,17 @@ Start Command:  streamlit run streamlit_app.py --server.address 0.0.0.0 --server
 
 ---
 
+## 🐳 Docker
+
+### Pull and Run (Docker Hub — recommended)
+
+The image is published on Docker Hub, so you can run it without cloning the repo or building anything locally:
+
+```bash
+docker pull inam54/ai-salary-predictor:latest
+docker run -p 8000:8000 -p 8501:8501 inam54/ai-salary-predictor:latest
+```
+
 ## 🐳 Docker (Local Alternative)
 
 Run both services locally in a single container:
